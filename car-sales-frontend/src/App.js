@@ -5,12 +5,18 @@ import Login from './login';
 import Logout from './logout';
 import ChangePassword from './ChangePassword';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Dashboard from './Dashboard';
+import PrivateRoute from './PrivateRoute';
+import AddCar from './AddCar';
+import CarList from './CarList';
+import AddSale from './AddSale';
+import SalesList from './SalesList';
 
 
 
 function App() {
   return (
-    <Router>
+    <><Router>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand href="/">Car Sales App</Navbar.Brand>
@@ -29,6 +35,16 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
+    <Router>
+        <Route path="/login" component={Login} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/add-car" component={AddCar} />
+        <PrivateRoute path="/car-list" component={CarList} />
+        <PrivateRoute path="/add-sale" component={AddSale} />
+        <PrivateRoute path="/sales-list" component={SalesList} />
+        <PrivateRoute path="/change-password" component={ChangePassword} />
+      </Router></>
+
   );
 }
 
