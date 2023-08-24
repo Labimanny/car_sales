@@ -4,6 +4,9 @@ import { Container, Navbar, Nav } from 'react-bootstrap';
 import Login from './login';
 import Logout from './logout';
 import ChangePassword from './ChangePassword';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 function App() {
   return (
