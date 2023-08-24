@@ -3,26 +3,26 @@ import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
 
-  const handleLogin = async (e) => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
     try {
-      const response = await axios.post('/api/auth/login/', {
-        email: email,
-        password: password
-      });
-      
-      // Assuming the backend returns a token upon successful login
+      const response = await axios.post('/api/auth/login/', formData);
       const token = response.data.token;
-
-      // Store the token in local storage or a cookie
       localStorage.setItem('token', token);
-
-      // Redirect the user to a protected route
-      // You can use react-router-dom's Redirect component for this
+      // Redirect or update state to indicate successful login
     } catch (error) {
       console.error('Login error:', error);
     }
@@ -31,16 +31,30 @@ const Login = () => {
   return (
     <div className="container">
       <h2>Login</h2>
-      <Form onSubmit={handleLogin}>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <Form.Control
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            placeholder="Enter email"
+          />
         </Form.Group>
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <Form.Control
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+            placeholder="Password"
+          />
         </Form.Group>
-        <Button type="submit" variant="primary">Login</Button>
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
       </Form>
     </div>
   );
