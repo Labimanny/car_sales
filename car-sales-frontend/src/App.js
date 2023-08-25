@@ -36,13 +36,16 @@ function App() {
       </Routes>
     </Router>
     <Router>
-        <Route path="/login" component={Login} />
-        <PrivateRoute path="/dashboard" component={Dashboard} />
-        <PrivateRoute path="/add-car" component={AddCar} />
-        <PrivateRoute path="/car-list" component={CarList} />
-        <PrivateRoute path="/add-sale" component={AddSale} />
-        <PrivateRoute path="/sales-list" component={SalesList} />
-        <PrivateRoute path="/change-password" component={ChangePassword} />
+        <Routes>
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/add-car" component={AddCar} />
+          <PrivateRoute path="/car-list" component={CarList} />
+          <PrivateRoute path="/add-sale" component={AddSale} />
+          <PrivateRoute path="/sales-list" component={SalesList} />
+          <PrivateRoute path="/change-password" component={ChangePassword} />
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+        </Routes>
       </Router></>
 
   );
