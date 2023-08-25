@@ -18,7 +18,7 @@ function App() {
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand href="/">Car Sales App</Navbar.Brand>
-          <Nav className="ml-auto">
+          <Nav className="ml-auto navbar navbar-expand-lg bg-body-tertiary">
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/logout">Logout</Nav.Link>
             <Nav.Link href="/change-password">Change Password</Nav.Link>
